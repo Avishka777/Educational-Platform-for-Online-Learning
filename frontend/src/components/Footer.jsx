@@ -2,6 +2,7 @@ import { Footer } from "flowbite-react";
 import { BsDribbble, BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 import logo from '../assets/logo.png';
 
+
 export default function Footers() {
 
     return (
