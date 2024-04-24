@@ -3,6 +3,7 @@ import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import OAuth from '../components/OAuth';
 
 export default function Signup() {
   return (
@@ -47,6 +48,8 @@ export default function Signup() {
             <Button gradientDuoTone='purpleToBlue' type='submit' >Sign Up</Button>
 
           </form>
+
+          <OAuth/>
 
           <div className='flex gap-2 text-sm mt-5'>
             <span>Have an account?</span>
