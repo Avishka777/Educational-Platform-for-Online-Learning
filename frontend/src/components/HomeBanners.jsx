@@ -8,7 +8,7 @@ import Slide3 from '../assets/slide/Slide3.png';
 export default function HomeBanners() {
   return (
     
-    <div className='sm:px-36 py-10 px-10'>
+    <div className=''>
       <Carousel autoPlay infiniteLoop showThumbs={false} interval={2000}>
       
       <div className="relative">
