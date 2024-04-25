@@ -66,7 +66,7 @@ export default function DashNotification() {
 
   return (
     <div className='w-full p-5 scrollbar'>
-      {currentUser.isAdmin && userNotifications.length > 0 ? (
+      {currentUser.isAdmin ? (
         <>
           <Table hoverable className='shadow-md'>
             <Table.Head>

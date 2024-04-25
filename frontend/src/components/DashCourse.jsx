@@ -77,7 +77,7 @@ export default function DashCourses() {
 
   return (
     <div className='w-full p-5 scrollbar'>
-      {currentUser.isAdmin && userCourses.length > 0 ? (
+      {currentUser.isAdmin ? (
         <>
          {/* Table Of Courses */}
           <Table hoverable className='shadow-md'>
