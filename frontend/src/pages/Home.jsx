@@ -1,7 +1,10 @@
 import React from 'react'
+import HomeSlides from '../components/HomeBanners'
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <HomeSlides/>
+    </div>
   )
 }

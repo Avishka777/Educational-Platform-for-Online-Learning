@@ -114,8 +114,8 @@ export default function Header() {
         <Navbar.Link active={path === '/'} as={'div'} style={{ color: path === "/" ? "#8043d6" : "#1f96c1" }}>
           <Link to='/'>Home</Link>
         </Navbar.Link>
-        <Navbar.Link active={path === '/products'} as={'div'} style={{ color: path === "/products" ? "#8043d6" : "#1f96c1" }} >
-          <Link to='/products'>Products</Link>
+        <Navbar.Link active={path === '/courses'} as={'div'} style={{ color: path === "/courses" ? "#8043d6" : "#1f96c1" }} >
+          <Link to='/courses'>Courses</Link>
         </Navbar.Link>
         <Navbar.Link active={path === '/about'} as={'div'} style={{ color: path === "/about" ? "#8043d6" : "#1f96c1" }}>
           <Link to='/about'>About Us</Link>
