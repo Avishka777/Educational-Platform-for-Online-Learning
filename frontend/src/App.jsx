@@ -8,6 +8,7 @@ import Header from './components/Header'
 import Footers from './components/Footer'
 import AllCourse from './pages/AllCourse'
 import MyCourse from './pages/MyCourse'
+import Course from './pages/Course'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
       <Route path="/sign-in" element={ <Signin/> }/>
       <Route path="/allcourses" element={ <AllCourse/> }/>
       <Route path="/mycourses" element={ <MyCourse/> }/>
+      <Route path="/mycourse" element={ <Course/> }/>
     
     </Routes>
     <Footers/>
