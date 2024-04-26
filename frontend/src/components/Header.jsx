@@ -7,6 +7,7 @@ import { toggleTheme } from '../redux/theme/themeSlice';
 import logo from '../assets/logo.png';
 import { signoutSuccess } from '../redux/user/userSlice';
 import { useEffect, useState } from 'react';
+import { MdNotifications } from "react-icons/md";
 
 export default function Header() {
   const path = useLocation().pathname;
@@ -53,8 +54,8 @@ export default function Header() {
     <Navbar className='border-b-2'>
       
       <Link to='/' className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white flex'>
-        <img src={logo} className="mr-3 h-12 sm:h-12" alt="Company Logo" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white font-serif text-sky-700">Knowledge.Net</span>
+        <img src={logo} className="mr-3 h-16 sm:h-16" alt="Company Logo" />
+        <span className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white font-serif text-sky-700">Knowledge.Net</span>
       </Link>
       
       <form onSubmit={handleSubmit}>
@@ -72,13 +73,16 @@ export default function Header() {
 
       <div className='flex gap-2 md:order-2'>
         <Button
-          className='sm:inline rounded-lg'
+          className='border-none'
           color='gray'
           pill
           onClick={() => dispatch(toggleTheme())}
         >
-          {theme === 'light' ? <FaMoon /> : <FaSun />}
+          {theme === 'light' ? <FaMoon  size={20}/> : <FaSun  size={20}/>}
         </Button>
+        
+        <MdNotifications size={28} className='my-auto mx-4' />
+        
         {currentUser ? (
           <Dropdown
             arrowIcon={false}
@@ -110,18 +114,19 @@ export default function Header() {
         )}
         <Navbar.Toggle />
       </div>
+      
       <Navbar.Collapse>
         <Navbar.Link active={path === '/'} as={'div'} style={{ color: path === "/" ? "#8043d6" : "#1f96c1" }}>
-          <Link to='/'>Home</Link>
+          <Link to='/' className='text-lg'>Home</Link>
         </Navbar.Link>
-        <Navbar.Link active={path === '/courses'} as={'div'} style={{ color: path === "/courses" ? "#8043d6" : "#1f96c1" }} >
-          <Link to='/courses'>Courses</Link>
+        <Navbar.Link active={path === '/allcourses'} as={'div'} style={{ color: path === "/allcourses" ? "#8043d6" : "#1f96c1" }} >
+          <Link to='/allcourses' className='text-lg'>All Courses</Link>
+        </Navbar.Link>
+        <Navbar.Link active={path === '/mycourses'} as={'div'} style={{ color: path === "/mycourses" ? "#8043d6" : "#1f96c1" }}>
+          <Link to='/mycourses' className='text-lg'>My Courses</Link>
         </Navbar.Link>
         <Navbar.Link active={path === '/about'} as={'div'} style={{ color: path === "/about" ? "#8043d6" : "#1f96c1" }}>
-          <Link to='/about'>About Us</Link>
-        </Navbar.Link>
-        <Navbar.Link active={path === '/contact'} as={'div'} style={{ color: path === "/contact" ? "#8043d6" : "#1f96c1" }}>
-          <Link to='/contact'>Contact Us</Link>
+          <Link to='/about' className='text-lg'>About Us</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
