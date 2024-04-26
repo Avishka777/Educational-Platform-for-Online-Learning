@@ -8,7 +8,7 @@ export default function CourseCard() {
     
     <div className='sm:flex gap-8 justify-center'>
     
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-10">
+        <div class="max-w-1/3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-10">
             <a href="#">
                 <img class="rounded-t-lg" src={Slide1} alt="Course Image" />
             </a>
@@ -26,7 +26,7 @@ export default function CourseCard() {
             </div>
         </div>
 
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-10">
+        <div class="max-w-1/3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-10">
             <a href="#">
                 <img class="rounded-t-lg" src={Slide2} alt="Course Image" />
             </a>
@@ -44,7 +44,7 @@ export default function CourseCard() {
             </div>
         </div>
 
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-10">
+        <div class="max-w-1/3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-10">
             <a href="#">
                 <img class="rounded-t-lg" src={Slide3} alt="Course Image" />
             </a>

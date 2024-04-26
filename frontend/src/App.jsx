@@ -7,6 +7,7 @@ import About from './pages/About'
 import Header from './components/Header'
 import Footers from './components/Footer'
 import AllCourse from './pages/AllCourse'
+import MyCourse from './pages/MyCourse'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
       <Route path="/sign-up" element={ <Signup/> }/>
       <Route path="/sign-in" element={ <Signin/> }/>
       <Route path="/allcourses" element={ <AllCourse/> }/>
+      <Route path="/mycourses" element={ <MyCourse/> }/>
     
     </Routes>
     <Footers/>
