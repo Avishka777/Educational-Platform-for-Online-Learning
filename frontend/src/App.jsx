@@ -11,6 +11,7 @@ import MyCourse from './pages/MyCourse'
 import Course from './pages/Course'
 import PrivateRoute from './components/PrivateRoute'
 import Dashboard from './pages/Dashboard'
+import CreateCourse from './pages/CreateCourse'
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
       <Route path="/allcourses" element={ <AllCourse/> }/>
       <Route path="/mycourses" element={ <MyCourse/> }/>
       <Route path="/mycourse" element={ <Course/> }/>
+      <Route path="/create-course" element={ <CreateCourse/> }/>
 
       <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<Dashboard />} />
