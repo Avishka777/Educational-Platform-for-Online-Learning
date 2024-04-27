@@ -54,22 +54,13 @@ export default function DashComp() {
   return (
     <div className='p-5 w-full'>
       {/* Buttons To Createions */}
-      <div className='flex gap-2 text-sm m-auto mb-3'>
-          {currentUser.isAdmin && (
+        <div className='flex gap-2 text-sm m-auto mb-3'>
             <Link to={'/sign-up'}>
               <Button type='button' gradientDuoTone='purpleToBlue' className='w-full'>Create User</Button>
             </Link>
-          )}
-          {currentUser.isAdmin && (
             <Link to={'/create-course'}>
               <Button type='button' gradientDuoTone='greenToBlue' className='w-full'>Create Course</Button>
             </Link>
-          )}
-          {currentUser.isAdmin && (
-            <Link to={'/create-notification'}>
-              <Button type='button' gradientDuoTone='purpleToPink' className='w-full'>Create Notification</Button>
-            </Link>
-          )}
         </div>
       
       {/* Displaying Total Users And Recent Users and Courses */}
@@ -119,7 +110,7 @@ export default function DashComp() {
       <div className='flex flex-row gap-4 py-3  min-w-full'>
         
         {/* Recent Users Component */}
-        <div className='flex flex-col w-3/12 shadow-md rounded-md dark:bg-gray-800'>
+        <div className='flex flex-col w-1/2 shadow-md rounded-md dark:bg-gray-800'>
           <div className='flex justify-between  p-3 text-sm font-semibold'>
             <h1 className='text-center p-2'>Recent users</h1>
             <Button outline gradientDuoTone='purpleToBlue'>
@@ -151,7 +142,7 @@ export default function DashComp() {
         </div>
 
         {/* Recent Courses Component */}
-        <div className='flex flex-col w-3/12 shadow-md rounded-md dark:bg-gray-800'>
+        <div className='flex flex-col w-1/2 shadow-md rounded-md dark:bg-gray-800'>
           <div className='flex justify-between  p-3 text-sm font-semibold'>
             <h1 className='text-center p-2'>Recent Courses</h1>
             <Button outline gradientDuoTone='greenToBlue'>
