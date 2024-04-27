@@ -49,11 +49,11 @@ export default function DashSidebar() {
           </Link>
 
           {/* Dashboard Link */}
-          {currentUser && currentUser.isAdmin && (
+     
             <Link to='/dashboard?tab=dash'>
               <Sidebar.Item active={tab === 'dash' || !tab} icon={HiChartBar} as='div'>Dashboard</Sidebar.Item>
             </Link>
-          )}
+       
 
           {/* Users Link */}
           {currentUser.isAdmin && (

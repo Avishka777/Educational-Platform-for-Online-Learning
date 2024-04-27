@@ -54,6 +54,15 @@ export default function DashComp() {
   return (
     <div className='p-5 w-full'>
       {/* Buttons To Createions */}
+        <div className='flex gap-2 text-sm m-auto mb-3'>
+            <Link to={'/sign-up'}>
+              <Button type='button' gradientDuoTone='purpleToBlue' className='w-full'>Create User</Button>
+            </Link>
+            <Link to={'/create-course'}>
+              <Button type='button' gradientDuoTone='greenToBlue' className='w-full'>Create Course</Button>
+            </Link>
+        </div>
+
       <div className='flex gap-2 text-sm m-auto mb-3'>
           {currentUser.isAdmin && (
             <Link to={'/sign-up'}>
