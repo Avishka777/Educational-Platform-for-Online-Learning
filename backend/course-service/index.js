@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
-const postRoute = require('../api/routes/post.route.js')
+const postRoute = require('../course-service/routes/post.route')
 
 dotenv.config()
 mongoose.connect(process.env.MONGODB_CONNECTION).then(() => console.log('Database connected...')).catch((err) => {
