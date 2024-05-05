@@ -1,5 +1,5 @@
-import express from 'express';
-import { create } from '../controllers/post.controller.js';
+const express = require('express');
+const { create } = require('../controllers/post.controller');
 
 const router = express.Router();
 
@@ -7,4 +7,4 @@ router.post('/create', create)
 
 
 
-export default router;
+module.exports = router;
