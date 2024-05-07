@@ -82,5 +82,25 @@ const deletepost = async (req, res, next) => {
     }
 };
 
+const updatepost = async (req, res, next) => {
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(
+      req.params.postId,
+      {
+        $set: {
+          title: req.body.title,
+          content: req.body.content,
+          category: req.body.category,
+          image: req.body.image,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedPost);
+  } catch (error) {
+    next(error);
+  }
+};
 
-  module.exports = {create, getposts, deletepost}
+
+  module.exports = {create, getposts, deletepost, updatepost}
