@@ -9,7 +9,7 @@ export default function HomeBanners() {
   return (
     
     <div className=''>
-      <Carousel autoPlay infiniteLoop showThumbs={false} interval={2000}>
+      <Carousel autoPlay infiniteLoop showThumbs={false} interval={2000} showStatus={false} >
       
       <div className="relative">
         <img src={Slide1} alt="Slide 1" className='rounded-3xl'/>
