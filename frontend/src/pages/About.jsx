@@ -4,9 +4,8 @@ import mission from '../assets/about/mission.jpg';
 
 export default function About() {
   return (
-    
+    // start About us section
     <div className='sm:px-36 py-10 px-10 justify-center mx-auto items-center'>
-      
       <div className='flex felx-row justify-center mx-auto items-center'>
         <img src={logo} className="h-50 w-60 rounded-lg mr-10" alt="Company Logo" />
         <h1 className='my-auto text-cyan-500 sm:text-7xl text-3xl  font-serif'>About Us...</h1>
