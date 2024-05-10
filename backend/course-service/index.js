@@ -17,7 +17,7 @@ app.use(cookieParser())
 
 
 app.listen(5002, () => {
-    console.log('Course Service is running on port 5002');
+    console.log('Server is running on port 5002');
 })
 
 app.use('/api/post', postRoute)
