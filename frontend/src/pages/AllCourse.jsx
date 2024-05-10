@@ -45,7 +45,7 @@ export default function AllCourse() {
 
             {
                 courses.map((course) => ( 
-                    <CourseCard key={course._id} course={course}/>
+                    <CourseCard key={course._id} course={course}/>  
                  ))
             }
                             

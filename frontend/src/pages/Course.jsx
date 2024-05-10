@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react'
 import Slide1 from '../assets/slide/Slide1.png';
 import { SiCashapp } from "react-icons/si";
 import axios from 'axios'
+import { useParams } from 'react-router-dom';
 
 export default function Course() {
 
+    const {id} = useParams()
     const [courses, setCourses ] = useState([])
 
     useEffect(() => {
         const fetchCourses = async() => {
-            const response = await axios.get('/courseservice/api/post/getposts')
-            setCourses(response.data)
+            const response = await axios.get(`/courseservice/api/post/getposts?postId=${id}`)
+            setCourses(response.data.posts[0])
         }
 
         fetchCourses()
-    },[])
+    },[id])
 
     console.log(courses);
 
@@ -22,7 +24,7 @@ export default function Course() {
     <div className='sm:px-36 py-10 px-10'>
         
         <div className='rounded-lg mt-12'>
-          <h1 className='text-2xl sm:text-4xl font-serif mb-5'>Course Name</h1>
+          <h1 className='text-2xl sm:text-4xl font-serif mb-5'>{courses.title}</h1>
           <hr className='my-1 sm:my-2 border-2 border-gray-500 font-bold' />
         </div>
 
@@ -32,25 +34,17 @@ export default function Course() {
             <div className='flex flex-col w-2/3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-10 p-5'>
                 <p class="mb-1 text-3xl text-black dark:text-white font-bold ">Course Description</p>
                 <hr className='my-3 sm:my-3 border-1 border-gray-500 font-bold' />
-                <p class="mb-1 text-2xl text-gray-500 dark:text-white font-bold ">What you'll learn</p>
-                <p class="mb-1 text-lg text-black dark:text-white ">Gain an immersive understanding of the practices and processes used by a junior or associate data analyst in their </p>
-                <p class="mb-1 text-lg text-black dark:text-white ">Understand how to clean and organize data for analysis, and complete analysis and calculations using spreadsheets, </p>
-                <p class="mb-1 text-lg text-black dark:text-white ">Gain an immersive understanding of the practices and processes used by a junior or associate data analyst in their </p>
-                <p class="mb-1 text-lg text-black dark:text-white ">Understand how to clean and organize data for analysis, and complete analysis and calculations using spreadsheets, </p>
-                <p class="mb-1 text-lg text-black dark:text-white ">Gain an immersive understanding of the practices and processes used by a junior or associate data analyst in their </p>
-                <p class="mb-1 text-lg text-black dark:text-white ">Understand how to clean and organize data for analysis, and complete analysis and calculations using spreadsheets, </p>
-                <p class="mb-1 text-lg text-black dark:text-white ">Gain an immersive understanding of the practices and processes used by a junior or associate data analyst in their </p>
-                <p class="mb-1 text-lg text-black dark:text-white ">Understand how to clean and organize data for analysis, and complete analysis and calculations using spreadsheets, </p>
+                <div className='mx-auto p-10 sm:px-20 product-content' dangerouslySetInnerHTML={{ __html: courses && courses.content }}></div>
             </div>
 
             {/* Right */}
             <div className='flex-1 w-1/3'>
 
                 <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-10">
-                    <img class="rounded-t-lg" src={Slide1} alt="Course Image" />
+                    <img class="rounded-t-lg" src={courses.image} alt="Course Image" />
                     <div class="p-5">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Course Name</h5>
-                        <p class="mb-3 text-xl text-gray-700 dark:text-gray-400">Price: $ 200</p>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{courses.title}</h5>
+                        <p class="mb-3 text-xl text-gray-700 dark:text-gray-400">Price: $ {courses.price}</p>
                         <a href="#" class="inline-flex items-center px-3 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Buy Now<SiCashapp className='ml-3' size={20} />
                         </a>

@@ -94,6 +94,14 @@ export default function CreateCourse() {
           className="flex-1"
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
+        <TextInput
+          type="text"
+          placeholder="Price"
+          required
+          id="price"
+          className="flex-1"
+          onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+        />
         <Select
           onChange={(e) => setFormData({ ...formData, category: e.target.value })}
         >

@@ -27,7 +27,7 @@ export default function App() {
       <Route path="/sign-in" element={ <Signin/> }/>
       <Route path="/allcourses" element={ <AllCourse/> }/>
       <Route path="/mycourses" element={ <MyCourse/> }/>
-      <Route path="/mycourse" element={ <Course/> }/>
+      <Route path="/mycourse/:id" element={ <Course/> }/>
       <Route path="/create-course" element={ <CreateCourse/> }/>
       <Route path='/update-course/:courseId' element={<UpdateCourse />} />
 
