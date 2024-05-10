@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CourseCard from '../components/CourseCard'
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 export default function AllCourse() {
+  const { currentUser } = useSelector((state) => state.user);
+
+  const [courses, setCourses] = useState([]);
+  const [search, setSearch] = useState("All Courses"); 
+
+  useEffect(() => {
+
+    const fetchCourses = async () => {
+        const respose = await axios.get(`/courseservice/api/post/getposts`)
+        setCourses(respose.data.posts)
+    }
+
+    fetchCourses()
+      
+  },[])
+
+  console.log(courses);
+
   return (
     // start All course section
     <div className='sm:px-36 py-10 px-10'>
@@ -15,17 +35,30 @@ export default function AllCourse() {
             <a href="#SpecializedSkills" className="hover:text-gray-700 text-lg font-semibold">Specialized Skills</a>
         </nav>
 
-        <h1 className='text-2xl sm:text-4xl font-serif mt-8 text-sky-600'>Let's Start Learning , Avishka</h1>
+        <h1 className='text-2xl sm:text-4xl font-serif mt-8 text-sky-600'>Let's Start Learning , {currentUser.userName}</h1>
 
         <section id="TechnicalCourses">
             <div className='rounded-lg mt-8'>
-                <h1 className='text-2xl sm:text-4xl font-serif mb-5'>Technical Courses</h1>
+                <h1 className='text-2xl sm:text-4xl font-serif mb-5'>{search}</h1>
                 <hr className='my-1 sm:my-2 border-2 border-gray-500 font-bold' />
             </div>
-            <CourseCard/>
+
+            {
+                courses.map((course) => ( 
+                    <CourseCard key={course._id} course={course}/>
+                 ))
+            }
+                            
+                   
+        
+           
+
+                
         </section>
 
-        <section id="BusinessCourses">
+
+
+        {/* <section id="BusinessCourses">
             <div className='rounded-lg mt-12'>
                 <h1 className='text-2xl sm:text-4xl font-serif mb-5'>Business Courses</h1>
                 <hr className='my-1 sm:my-2 border-2 border-gray-500 font-bold' />
@@ -63,7 +96,7 @@ export default function AllCourse() {
                 <hr className='my-1 sm:my-2 border-2 border-gray-500 font-bold' />
             </div>
             <CourseCard/>
-        </section>
+        </section> */}
 
     </div>
   )
