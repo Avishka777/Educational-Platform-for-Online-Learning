@@ -94,13 +94,24 @@ export default function CreateCourse() {
           className="flex-1"
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
+        <TextInput
+          type="text"
+          placeholder="Price"
+          required
+          id="price"
+          className="flex-1"
+          onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+        />
         <Select
           onChange={(e) => setFormData({ ...formData, category: e.target.value })}
         >
           <option value="uncategorized">Select a category</option>
-          <option value="javascript">JavaScript</option>
-          <option value="reactjs">React.js</option>
-          <option value="nextjs">Next.js</option>
+          <option value="Technical Courses">Technical Courses</option>
+          <option value="Business Courses">Business Courses</option>
+          <option value="Creative Arts">Creative Arts</option>
+          <option value="Personal Development">Personal Development</option>
+          <option value="Academic Subjects">Academic Subjects</option>
+          <option value="Specialized Skills">Specialized Skills</option>
         </Select>
 
         {/* Single Image Upload */}

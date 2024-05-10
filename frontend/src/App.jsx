@@ -13,7 +13,6 @@ import PrivateRoute from './components/PrivateRoute'
 import Dashboard from './pages/Dashboard'
 import CreateCourse from './pages/CreateCourse'
 import UpdateCourse from './pages/UpdateCourse'
-import EnrolledCourse from './pages/EnrolledCourse'
 
 export default function App() {
   return (
@@ -28,8 +27,7 @@ export default function App() {
       <Route path="/sign-in" element={ <Signin/> }/>
       <Route path="/allcourses" element={ <AllCourse/> }/>
       <Route path="/mycourses" element={ <MyCourse/> }/>
-      <Route path="/mycourse" element={ <Course/> }/>
-      <Route path="/enrolled-course" element={ <EnrolledCourse/> }/>
+      <Route path="/mycourse/:id" element={ <Course/> }/>
       <Route path="/create-course" element={ <CreateCourse/> }/>
       <Route path='/update-course/:courseId' element={<UpdateCourse />} />
 
