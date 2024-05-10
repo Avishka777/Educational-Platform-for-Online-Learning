@@ -3,7 +3,7 @@ import CourseCard from '../components/CourseCard'
 
 export default function AllCourse() {
   return (
-    
+    // start All course section
     <div className='sm:px-36 py-10 px-10'>
         
         <nav className='hidden sm:flex justify-between items-center py-4 px-6 bg-sky-600 text-white gap-5'>
