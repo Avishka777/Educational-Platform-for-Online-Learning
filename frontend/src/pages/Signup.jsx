@@ -50,7 +50,7 @@ export default function Signup() {
     <div className='min-h-screen mt-10 px-10'>
       <div className='flex max-w-6xl mx-auto flex-col md:flex-row md:items-center gap-5'>
 
-        {/* Left */}
+        {/* Left side*/}
         <div className='flex-1 flex flex-col items-center justify-center mx-8'>
           <img src={logo} className="h-48 sm:h-56" alt="Company Logo" />
           <p className='text-lg mt-2 text-center font-serif'>

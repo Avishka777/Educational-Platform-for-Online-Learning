@@ -63,7 +63,7 @@ export default function Signin() {
           </p>
         </div>
 
-        {/* Right */}
+        {/* Right side */}
         <div className='flex-1'>
         <div className='text-3xl mb-3 text-center font-serif text-sky-500'>
             Login to Your Account
