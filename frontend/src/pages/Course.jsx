@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slide1 from '../assets/slide/Slide1.png';
 import { SiCashapp } from "react-icons/si";
-
+import axios from 'axios'
 
 export default function Course() {
+
+    const [courses, setCourses ] = useState([])
+
+    useEffect(() => {
+        const fetchCourses = async() => {
+            const response = await axios.get('/courseservice/api/post/getposts')
+            setCourses(response.data)
+        }
+
+        fetchCourses()
+    },[])
+
+    console.log(courses);
+
   return (
     <div className='sm:px-36 py-10 px-10'>
         
