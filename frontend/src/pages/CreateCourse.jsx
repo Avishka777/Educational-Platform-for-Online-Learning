@@ -18,6 +18,8 @@ export default function CreateCourse() {
   const [publishError, setPublishError] = useState(null);
   const navigate = useNavigate();
 
+  console.log(formData);
+
   const handleUpload = async (file, type) => {
     if (!file) {
       setUploadError(prev => ({ ...prev, [type]: `Please select a ${type}` }));
@@ -76,7 +78,7 @@ export default function CreateCourse() {
         setPublishError(data.message);
         return;
       }
-      navigate(`/post/${data.slug}`);
+      navigate(`/dashboard?tab=dash`);
     } catch (error) {
       setPublishError("Something went wrong.");
     }

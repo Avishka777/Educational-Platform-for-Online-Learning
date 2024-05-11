@@ -20,7 +20,7 @@ const postSchema = new mongoose.Schema(
             unique: true,
             required: true  // Assuming you want to make title required as well
         },
-        image: {
+        photo: {
             type: String,
             default: 'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png'
         },
