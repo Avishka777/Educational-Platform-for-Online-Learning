@@ -2,19 +2,23 @@ const asyncHandler = require("express-async-handler");
 const Payment = require("../module/PaymentModule");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
-const accountSid = process.env.ACCOUNT_SID;
-const authToken = process.env.AUTH_TOKEN;
+const accountSid = 'ACc187b49eb4321fce0f4a2c305e24ad27';
+const authToken = 'dedce42e82a1481837486e5b85031b63';
 const client = require('twilio')(accountSid, authToken);
 
 
 const createPayment =asyncHandler (async(req,res)=>{
     try{
-        const uid = req.body.userid;
-        const cid = req.body.courseid;
-        const amount = req.body.amount;
-        const phone = req.body.phone
+        const uid = req.params.uid;
+        const cid = req.params.cid;
+        const amount = req.params.amount;
+        console.log(uid);
+        console.log(cid);
+        console.log(amount);
+        // const phone = req.params.phone
+        console.log(req.body.email);
 
-        stripe.charges.create(
+        await stripe.charges.create(
             {
               source: req.body.tokenId,
               amount: req.body.amount,
@@ -39,14 +43,13 @@ const createPayment =asyncHandler (async(req,res)=>{
             payemail:req.body.email
         })
 
-        client.messages
-        .create({
-            body: `You are Enrolled ${cid}`,
+        await client.messages.create({
+            body: 'Hi KOnda binush',
             from: '+12076721160',
-            to: `+94${phone}` 
+            to: '+94717472613'
         })
         .then(message => console.log(message.sid))
-        .done();
+        .catch(err => console.log(err));
 
         res.status(201).json(payment);
         
