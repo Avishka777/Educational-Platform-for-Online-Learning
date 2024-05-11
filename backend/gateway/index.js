@@ -8,6 +8,8 @@ app.use(express.json())
 
 app.use("/authservice", proxy("http://localhost:5001"))
 app.use("/courseservice", proxy("http://localhost:5002"))
+app.use("/paymentservice", proxy("http://localhost:5003"))
+app.use("/notificationservice", proxy("http://localhost:5004"))
 
 
 app.listen(5000, () => {
