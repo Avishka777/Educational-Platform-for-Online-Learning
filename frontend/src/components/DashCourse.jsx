@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import axios from 'axios'
 
 export default function DashCourses() {
 
@@ -14,50 +15,44 @@ export default function DashCourses() {
 
   //Function Get Courses
   useEffect(() => {
+
     const fetchCourses = async () => {
-      try {
-        const res = await fetch(`/api/course/getcourses?=${currentUser._id}`);
-        const data = await res.json();
-        if (res.ok) {
-          setUserCourses(data.courses);
-          if (data.courses.length < 9) {
-            setShowMore(false);
-          }
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    if (currentUser.isAdmin) {
-      fetchCourses();
+        const respose = await axios.get(`/courseservice/api/post/getposts`)
+        setUserCourses(respose.data.posts)
     }
-  }, [currentUser._id]);
+
+    fetchCourses()
+      
+  },[])
+
+
+  console.log(userCourses);
 
   //Function Get More Courses
-  const handleShowMore = async () => {
-    const startIndex = userCourses.length;
-    try {
-      const res = await fetch(
-        `/api/course/getcourses?userId=${currentUser._id}&startIndex=${startIndex}`
-      );
-      const data = await res.json();
-      if (res.ok) {
-        setUserCourses((prev) => [...prev, ...data.courses]);
-        if (data.courses.length < 9) {
-          setShowMore(false);
-        }
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // const handleShowMore = async () => {
+  //   const startIndex = userCourses.length;
+  //   try {
+  //     const res = await fetch(
+  //       `/api/course/getcourses?userId=${currentUser._id}&startIndex=${startIndex}`
+  //     );
+  //     const data = await res.json();
+  //     if (res.ok) {
+  //       setUserCourses((prev) => [...prev, ...data.courses]);
+  //       if (data.courses.length < 9) {
+  //         setShowMore(false);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   //Function Delete Courses
   const handleDeleteCourse = async () => {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/course/deletecourse/${courseIdToDelete}`,
+        `/courseservice/api/post/deletepost/${courseIdToDelete}`,
         {
           method: 'DELETE',
         }
@@ -82,40 +77,22 @@ export default function DashCourses() {
          {/* Table Of Courses */}
           <Table hoverable className='shadow-md'>
             <Table.Head>
-              <Table.HeadCell>Date Added</Table.HeadCell>
-              <Table.HeadCell>Course ID</Table.HeadCell>
+              <Table.HeadCell>Image</Table.HeadCell>
               <Table.HeadCell>Course Name</Table.HeadCell>
-              <Table.HeadCell>Credit</Table.HeadCell>
-              <Table.HeadCell>Lecturer</Table.HeadCell>
+              <Table.HeadCell>Course Category</Table.HeadCell>
+              <Table.HeadCell>Price</Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
               <Table.HeadCell>
                 <span>Edit</span>
               </Table.HeadCell>
             </Table.Head>
-            {userCourses.map((course) => (
-              <Table.Body className='divide-y'>
+            {userCourses.map((course,index) => (
+              <Table.Body key={index} className='divide-y'>
                 <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
-                  <Table.Cell>
-                    {new Date(course.updatedAt).toLocaleDateString()}
-                  </Table.Cell>
-                  <Table.Cell>
-                  <Link
-                      className='font-medium text-gray-900 dark:text-white'
-                      to={`/course/${course.slug}`}
-                    >
-                      {course.courseCode}
-                    </Link>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link
-                      className='font-medium text-gray-900 dark:text-white'
-                      to={`/course/${course.slug}`}
-                    >
-                      {course.courseName}
-                    </Link>
-                  </Table.Cell>
-                  <Table.Cell>{course.courseCredit}</Table.Cell>
-                  <Table.Cell>{course.enrolledfaculty}</Table.Cell>
+                  <Table.Cell><img src={course.photo} width={'100px'} alt="" /></Table.Cell>
+                  <Table.Cell>{course.title}</Table.Cell>
+                  <Table.Cell>{course.category}</Table.Cell>
+                  <Table.Cell>$ {course.price}.00</Table.Cell>
                   <Table.Cell>
                     {/* Delete Link */}
                     <span
@@ -143,7 +120,7 @@ export default function DashCourses() {
           </Table>
           {showMore && (
             <button
-              onClick={handleShowMore}
+              // onClick={handleShowMore}
               className='w-full text-teal-500 self-center text-sm py-7'
             >
               {/* Show More Button */}
