@@ -41,7 +41,7 @@ export default function Course() {
             <div className='flex-1 w-1/3'>
 
                 <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-10">
-                    <img class="rounded-t-lg" src={courses.image} alt="Course Image" />
+                    <img class="rounded-t-lg" src={courses.photo} alt="Course Image" />
                     <div class="p-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{courses.title}</h5>
                         <p class="mb-3 text-xl text-gray-700 dark:text-gray-400">Price: $ {courses.price}</p>

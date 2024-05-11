@@ -10,7 +10,7 @@ export default function CourseCard({course}) {
     <div className='sm:flex gap-8 justify-center'>    
         <div class="max-w-1/3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-10">
             <a href="#">
-                <img class="rounded-t-lg" src={course.image} alt="Course Image" />
+                <img class="rounded-t-lg" src={course.photo} alt="Course Image" />
             </a>
             <div class="p-5">
                 <a href="#">

@@ -91,7 +91,10 @@ const updatepost = async (req, res, next) => {
           title: req.body.title,
           content: req.body.content,
           category: req.body.category,
-          image: req.body.image,
+          price: req.body.price,
+          photo: req.body.photo,
+          videos: req.body.videos,
+          pdfs: req.body.pdfs,
         },
       },
       { new: true }
