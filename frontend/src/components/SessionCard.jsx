@@ -2,6 +2,7 @@ import React from "react";
 import { PiFilePdfFill } from "react-icons/pi";
 import { MdOndemandVideo } from "react-icons/md";
 import ReactPlayer from "react-player";
+import { Checkbox, Label } from "flowbite-react";
 
 export default function SessionCard() {
   // Dummy video URL
@@ -14,16 +15,21 @@ export default function SessionCard() {
         <h1 className="text-4xl font-serif text-sky-600">Session 1</h1>
         <hr />
         {/* Icons Section */}
-        <div className="justify-center items-center mt-5 gap-6">
-          <PiFilePdfFill size={30} />
-          <MdOndemandVideo size={30} />
+        <div className="flex justify-between">
+          <div className="justify-center items-center mt-5 gap-6">
+            <PiFilePdfFill size={30} />
+            <MdOndemandVideo size={30} />
+          </div>
+          <div className="mt-5">
+            <Label className="mr-4 mt-5">Completed</Label>
+            <Checkbox className="mr-2 size-6 "></Checkbox>
+          </div>
         </div>
         {/* Video Player Section */}
         <div className="mb-4">
           <ReactPlayer url={videoUrl} controls width="100%" />
         </div>
       </div>
-      
     </div>
   );
 }
