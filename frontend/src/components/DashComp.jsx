@@ -39,7 +39,7 @@ export default function DashComp() {
   // Function To Fetch Courses Data
   const fetchCourses = async () => {
     try {
-      const res = await fetch('/api/course/getcourses?limit=8');
+      const res = await fetch('/api/post/getposts?limit=8');
       const data = await res.json();
       if (res.ok) {
         setCourses(data.courses);
@@ -50,6 +50,8 @@ export default function DashComp() {
       console.log(error.message);
     }
   };
+
+  console.log(totalCourses);
 
   return (
     <div className='p-5 w-full'>
