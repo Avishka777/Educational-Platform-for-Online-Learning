@@ -8,7 +8,7 @@ const authRoute = require('./routes/auth.route.js')
 
 dotenv.config()
 mongoose.connect(process.env.MONGODB_CONNECTION).then(() => console.log('Database connected...')).catch((err) => {
-    console.log(err);
+    console.log(err);  // Connecting to MongoDB database using the connection string from environment variables
 })
 
 const app = express()
@@ -21,9 +21,11 @@ app.listen(5001, () => {
     console.log('Server is running on port 5001');
 })
 
+// Using routes
 app.use('/api/user', userRoute)
 app.use('/api/auth', authRoute)
 
+// Error handling middleware
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500
     const message = err.message || 'Internal server error'
