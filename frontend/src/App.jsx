@@ -31,7 +31,7 @@ export default function App() {
       <Route path="/mycourse/:id" element={ <Course/> }/>
       <Route path="/create-course" element={ <CreateCourse/> }/>
       <Route path='/update-course/:id' element={<UpdateCourse />} />
-      <Route path="/enrolled-course" element={ <EnrolledCourse/> }/>
+      <Route path="/enrolled-course/:id" element={ <EnrolledCourse/> }/>
 
 
       <Route element={<PrivateRoute />}>

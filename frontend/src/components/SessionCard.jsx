@@ -4,32 +4,35 @@ import { MdOndemandVideo } from "react-icons/md";
 import ReactPlayer from "react-player";
 import { Checkbox, Label } from "flowbite-react";
 
-export default function SessionCard() {
-  // Dummy video URL
-  const videoUrl =
-    "https://firebasestorage.googleapis.com/v0/b/mern-blog-7cc30.appspot.com/o/1715342034002_istockphoto-1305811497-640_adpp_is.mp4?alt=media&token=98080370-d91d-4843-8083-44bcd5871218";
-
+export default function SessionCard({ videos, pdfs }) {
   return (
     <div className="my-5 px-32">
-      <div className="max-w-full w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-5">
-        <h1 className="text-4xl font-serif text-sky-600">Session 1</h1>
-        <hr />
-        {/* Icons Section */}
-        <div className="flex justify-between">
-          <div className="justify-center items-center mt-5 gap-6">
-            <PiFilePdfFill size={30} />
-            <MdOndemandVideo size={30} />
+      {videos.map((video, index) => (
+        <div key={index} className="max-w-full w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-5">
+          <h1 className="text-4xl font-serif text-sky-600">Session {index + 1}</h1>
+          <hr />
+          {/* Icons Section */}
+          <div className="flex justify-between">
+            <div className="flex justify-center items-center mt-5 gap-6">
+              {/* Check if a corresponding PDF exists for this video */}
+              {pdfs[index] ? (
+                <a href={pdfs[index]} target="_blank" rel="noopener noreferrer">
+                  <PiFilePdfFill size={30} />
+                </a>
+              ) : null}
+              <MdOndemandVideo size={30} />
+            </div>
+            <div className="mt-5">
+              <Label className="mr-4 mt-5">Completed</Label>
+              <Checkbox className="mr-2 size-6 "></Checkbox>
+            </div>
           </div>
-          <div className="mt-5">
-            <Label className="mr-4 mt-5">Completed</Label>
-            <Checkbox className="mr-2 size-6 "></Checkbox>
+          {/* Video Player Section */}
+          <div className="mb-4">
+            <ReactPlayer url={video} controls width="100%" />
           </div>
         </div>
-        {/* Video Player Section */}
-        <div className="mb-4">
-          <ReactPlayer url={videoUrl} controls width="100%" />
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
