@@ -4,13 +4,18 @@ const Notfication = require('../module/NotficationModule')
 
 const createAnnousement = asyncHandler(async(req,res)=>{
     try{
+        console.log("Add notfication");
         const {title, annousement,category} = req.body
 
-        const notfications = Notfication.create({
-            title, annousement,category
+        const notfications =await Notfication.create({
+            title:title,
+            annousement:annousement,
+            category:category
         })
 
+
         res.status(201).json(notfications)
+        console.log(notfications);
 
     }catch (error) {
         console.error("Error occour notfication:", error);
@@ -34,7 +39,7 @@ const getallNotfication = asyncHandler(async(req,res)=>{
 const deleteNotficaton = asyncHandler(async(req,res)=>{
     try{
         const notficationid = req.params.notficationid
-        await Course.deleteOne({_id:notficationid});
+        await Notfication.deleteOne({_id:notficationid});
 
         res.status(202).json({message: "This notfication deleted successfull"})
 

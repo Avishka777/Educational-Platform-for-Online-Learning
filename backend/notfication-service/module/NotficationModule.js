@@ -11,7 +11,7 @@ const AnnousementSchema= mongoose.Schema(
             required: true
         },
         category: {
-            type: Number
+            type: String
         },
     },
     {
