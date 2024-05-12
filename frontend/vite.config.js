@@ -13,6 +13,10 @@ export default defineConfig({
         target: 'http://localhost:5000',
         secure: false,
       },
+      '/paymentservice': {
+        target: 'http://localhost:5000',
+        secure: false,
+      },
     },
   },
   plugins: [react()],

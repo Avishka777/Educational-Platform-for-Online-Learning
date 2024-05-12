@@ -2,12 +2,23 @@ import React, { useEffect, useState } from 'react'
 import Slide1 from '../assets/slide/Slide1.png';
 import { SiCashapp } from "react-icons/si";
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import StripeCheckout from 'react-stripe-checkout';
+import { useSelector } from 'react-redux';
+
 
 export default function Course() {
 
     const {id} = useParams()
     const [courses, setCourses ] = useState([])
+    const [stripeToken, setStripToken] = useState()
+    const navigate = useNavigate();
+
+    const { currentUser } = useSelector((state) => state.user);
+    console.log(currentUser._id);
+
+
 
     useEffect(() => {
         const fetchCourses = async() => {
@@ -19,6 +30,35 @@ export default function Course() {
     },[id])
 
     console.log(courses);
+
+
+    //payment
+    const onToken =(token)=>{
+        setStripToken(token)
+    }
+
+
+    useEffect(() => {
+        const makePayment = async () => {
+            try {
+                if (!stripeToken) return;
+
+                const response = await axios.post(`/paymentservice/api/stripe/${id}/${currentUser._id}/${courses.price}`, {
+                    tokenId: stripeToken.id,
+                    amount: courses.price,
+                    email: stripeToken.email,
+                });
+
+                console.log("Payment successful:", response.data);
+                // navigate('/'); 
+                //############ ADD NAVIGATION PAGE  #############
+            } catch (error) {
+                console.error("Payment error:", error);
+            }
+        };
+
+        makePayment();
+    }, [stripeToken, id, currentUser, courses.price,]);
 
   return (
     <div className='sm:px-36 py-10 px-10'>
@@ -45,9 +85,19 @@ export default function Course() {
                     <div class="p-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{courses.title}</h5>
                         <p class="mb-3 text-xl text-gray-700 dark:text-gray-400">Price: $ {courses.price}</p>
+
+                        <StripeCheckout name='Knowlage.net'
+                            billingAddress
+                            description="Payment for Course"
+                            amount={parseFloat(courses.price)*100}
+                            token={onToken}
+                            stripeKey={"pk_test_51PAu2GAHeHiratLE7Ms4HuD72on5IDaxCrWf6wyagVxQLftAf1vptM16FE49I9WzjZ3HlsWgJZVRX5aCpnr4SxjR00jctG9rNQ"}
+                        >
                         <a href="#" class="inline-flex items-center px-3 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Buy Now<SiCashapp className='ml-3' size={20} />
                         </a>
+
+                        </StripeCheckout>
                         <hr className='my-3 sm:my-3 border-1 border-gray-500 font-bold' />
                         <div class="flex items-center space-x-1 rtl:space-x-reverse">
                             <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
