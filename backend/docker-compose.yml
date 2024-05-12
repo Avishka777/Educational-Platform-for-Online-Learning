@@ -1,0 +1,98 @@
+version: "3.8"
+services:
+  mongo:
+    image: mongo
+    container_name: mongo_c
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+  authservice:
+    build: ./authservice
+    container_name: authservice_c
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongo
+    volumes:
+      - ./authservice:/app
+      - /app/node_modules
+    env_file:
+      - ./authservice/.env
+    environment:
+      - MONGO_URL=mongodb://mongo_c:27017/mydb
+  courseservice:
+    build: ./courseservice
+    container_name: courseservice_c
+    ports:
+      - "5002:5002"
+    depends_on:
+      - mongo
+    env_file:
+      - ./courseservice/.env
+    volumes:
+      - ./courseservice:/app
+      - /app/node_modules
+    environment:
+      - MONGO_URL=mongodb://mongo_c:27017/mydb
+  paymentservice:
+    build: ./paymentservice
+    container_name: paymentservice_c
+    ports:
+      - "5003:5003"
+    depends_on:
+      - mongo
+    env_file:
+      - ./paymentservice/.env
+    volumes:
+      - ./paymentservice:/app
+      - /app/node_modules
+    environment:
+      - MONGO_URL=mongodb://mongo_c:27017/mydb
+  notificationservice:
+    build: ./notificationservice
+    container_name: notificationservice_c
+    ports:
+      - "5004:5004"
+    depends_on:
+      - mongo
+    env_file:
+      - ./notificationservice/.env
+    volumes:
+      - ./notificationservice:/app
+      - /app/node_modules
+    environment:
+      - MONGO_URL=mongodb://mongo_c:27017/mydb
+  gateway:
+    build: ./gateway
+    container_name: gateway_c
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+      - api
+    env_file:
+      - ./gateway/.env
+    volumes:
+      - ./gateway:/app
+      - ./notificationservice:/app
+      - ./authservice:/app
+      - ./courseservice:/app
+      - ./paymentservice:/app
+      - /app/node_modules
+    environment:
+      - MONGO_URL=mongodb://mongo_c:27017/mydb
+  nginx-proxy:
+    build:
+      dockerfile: Dockerfile
+      context: ./proxy
+    depends_on:
+      - authservice
+      - courseservice
+      - notificationservice
+      - paymentservice
+    ports:
+      - 50:50
+volumes:
+  mongo-data:
+    
