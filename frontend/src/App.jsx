@@ -22,20 +22,20 @@ export default function App() {
     <Header/>
     <Routes>
     
-      <Route path="/" element={ <Home/> }/>
-      <Route path="/about" element={ <About/> }/>
       <Route path="/sign-up" element={ <Signup/> }/>
       <Route path="/sign-in" element={ <Signin/> }/>
+      <Route path="/" element={ <Home/> }/>
+      <Route path="/about" element={ <About/> }/>
       <Route path="/allcourses" element={ <AllCourse/> }/>
-      <Route path="/mycourses" element={ <MyCourse/> }/>
-      <Route path="/mycourse/:id" element={ <Course/> }/>
-      <Route path="/create-course" element={ <CreateCourse/> }/>
-      <Route path='/update-course/:id' element={<UpdateCourse />} />
-      <Route path="/enrolled-course/:id" element={ <EnrolledCourse/> }/>
 
 
       <Route element={<PrivateRoute />}>
-          <Route path='/dashboard' element={<Dashboard />} />
+      <Route path="/mycourse/:id" element={ <Course/> }/>
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path="/mycourses" element={ <MyCourse/> }/>
+        <Route path="/create-course" element={ <CreateCourse/> }/>
+        <Route path='/update-course/:id' element={<UpdateCourse />} />
+        <Route path="/enrolled-course/:id" element={ <EnrolledCourse/> }/>
       </Route>
     
     </Routes>

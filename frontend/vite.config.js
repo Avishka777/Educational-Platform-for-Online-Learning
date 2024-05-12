@@ -17,6 +17,10 @@ export default defineConfig({
         target: 'http://localhost:5000',
         secure: false,
       },
+      '/notificationservice': {
+        target: 'http://localhost:5000',
+        secure: false,
+      },
     },
   },
   plugins: [react()],

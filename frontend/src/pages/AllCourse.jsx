@@ -36,7 +36,7 @@ export default function AllCourse() {
         <button onClick={() => handleCategoryChange("Specialized Skills")} className="hover:text-gray-700 text-lg font-semibold">Specialized Skills</button>
       </nav>
 
-      <h1 className='text-2xl sm:text-4xl font-serif mt-8 text-sky-600'>Let's Start Learning, {currentUser.userName.toUpperCase()}</h1>
+      <h1 className='text-2xl sm:text-4xl font-serif mt-8 text-sky-600'>Let's Start Learning, {currentUser ? currentUser.userName.toUpperCase() : ''}</h1>
 
       <section id={selectedCategory.replace(/\s+/g, '')}>
         <div className='rounded-lg mt-8'>

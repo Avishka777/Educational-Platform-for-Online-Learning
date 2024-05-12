@@ -8,6 +8,7 @@ export default function MyCourse() {
   const [payments, setPayments] = useState([]);
   const [courseIds, setCourseIds] = useState([]);
   const [courses, setCourses] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Add state to track loading status
 
   useEffect(() => {
     const fetchPayments = async () => {
@@ -19,6 +20,7 @@ export default function MyCourse() {
       } catch (error) {
         console.error("Failed to fetch payments:", error);
       }
+      setIsLoading(false); // Set loading to false regardless of the outcome
     };
 
     if (currentUser._id) {
@@ -30,11 +32,9 @@ export default function MyCourse() {
     if (courseIds.length > 0) {
       const fetchCourses = async () => {
         try {
-          // Create an array of promises for each course ID fetch
           const courseFetchPromises = courseIds.map(courseId =>
             axios.get(`/courseservice/api/post/getposts?postId=${courseId}`)
           );
-          // Resolve all promises to get course details
           const coursesResponses = await Promise.all(courseFetchPromises);
           const fetchedCourses = coursesResponses.map(response => response.data.posts[0]);
           setCourses(fetchedCourses);
@@ -45,15 +45,21 @@ export default function MyCourse() {
 
       fetchCourses();
     }
-  }, [courseIds]); // Dependency on courseIds ensures this runs when IDs update
+  }, [courseIds]);
 
   return (
     <div className='sm:px-36 py-10 px-10'>
       <h1 className='text-2xl sm:text-4xl font-serif mt-8 text-sky-600'>My Courses</h1>
       <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
-        {courses.map(course => (
-          <PaymentCourseCard key={course._id} course={course}/>
-        ))}
+        {isLoading ? (
+          <p>Loading courses...</p> // Display while loading
+        ) : courses.length > 0 ? (
+          courses.map(course => (
+            <PaymentCourseCard key={course._id} course={course}/>
+          ))
+        ) : (
+          <p className='text-2xl font-semibold text-orange-300'>You did not buy any courses.</p> // Display if no courses are found
+        )}
       </div>
     </div>
   );

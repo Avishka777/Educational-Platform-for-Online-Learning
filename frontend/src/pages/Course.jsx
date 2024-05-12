@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 
 export default function Course() {
-
+    
     const {id} = useParams()
     const [courses, setCourses ] = useState([])
     const [stripeToken, setStripToken] = useState()
@@ -50,8 +50,7 @@ export default function Course() {
                 });
 
                 console.log("Payment successful:", response.data);
-                // navigate('/'); 
-                //############ ADD NAVIGATION PAGE  #############
+                window.location.href = "/mycourses";
             } catch (error) {
                 console.error("Payment error:", error);
             }

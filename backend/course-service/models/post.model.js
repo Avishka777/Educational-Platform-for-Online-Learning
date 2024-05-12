@@ -4,31 +4,30 @@ const postSchema = new mongoose.Schema(
     {
         userId: {
             type: String,
-            // require: true
+           
         },
         content: {
             type: String,
-            required: true  // corrected from 'require' to 'required'
+            required: true
         },
         title: {
             type: String,
             unique: true,
-            required: true  // Assuming you want to make title required as well
+            required: true
         },
         price: {
             type: String,
-            unique: true,
-            required: true  // Assuming you want to make title required as well
+            required: true
         },
         photo: {
             type: String,
             default: 'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png'
         },
-        videos: [{  // Changed from 'video' to 'videos' and type to Array of Strings
+        videos: [{
             type: String,
             default: 'https://videopromotion.club/assets/images/default-video-thumbnail.jpg'
         }],
-        pdfs: [{  // Changed from 'pdf' to 'pdfs' and type to Array of Strings
+        pdfs: [{
             type: String,
             default: 'https://videopromotion.club/assets/images/default-video-thumbnail.jpg'
         }],

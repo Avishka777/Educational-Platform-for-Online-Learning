@@ -9,6 +9,7 @@ import { signoutSuccess } from "../redux/user/userSlice";
 import { useEffect, useState } from "react";
 import { MdNotifications } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
+import axios from 'axios'
 
 export default function Header() {
   const path = useLocation().pathname;
@@ -18,6 +19,7 @@ export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
   const [searchTerm, setSearchTerm] = useState("");
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -50,6 +52,17 @@ export default function Header() {
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
+
+   useEffect(() => {
+      const fetchNotifications = async () => {
+        const res = await axios.get(`/notificationservice/api/notification/`)
+        setNotifications(res.data)
+      }
+
+    fetchNotifications()
+   },[])
+
+   console.log(notifications);
 
   return (
     <Navbar className="border-b-2">
@@ -102,10 +115,16 @@ export default function Header() {
 
           <Dropdown.Divider />
 
-          <Dropdown.Item>Title</Dropdown.Item>
-          <Dropdown.Item>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus sunt labore repellat quidem
-          </Dropdown.Item>
+          {
+            notifications.map((notification, index) => (
+              <>
+              <Dropdown.Item className="font-semibold">{notification.title}</Dropdown.Item>
+              <Dropdown.Item>
+               {notification.annousement}
+              </Dropdown.Item>
+              </>
+            ))
+          }
         </Dropdown>
 
         {currentUser ? (
