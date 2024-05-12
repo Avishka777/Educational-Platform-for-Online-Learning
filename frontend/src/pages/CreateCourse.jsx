@@ -7,6 +7,7 @@ import { app } from "../firebase";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 export default function CreateCourse() {
   const [photo, setPhoto] = useState(null);
@@ -72,6 +73,13 @@ export default function CreateCourse() {
         },
         body: JSON.stringify(formData),
       });
+
+      const notification = {
+        title:`New course created`,
+        annousement:`${formData.title} course created under ${formData.category} category. Check and learn.`,
+      }
+      await axios.post('/notificationservice/api/notification',notification)
+
       const data = await res.json();
 
       if (!res.ok) {
