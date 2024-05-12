@@ -7,13 +7,13 @@ import { Link } from 'react-router-dom';
 export default function CourseCard({course}) {
   return (
     
-    <div className='sm:flex gap-8 justify-center'>    
+    <div className='sm:flex gap-8 justify-center shadow-xl'>    
         <div class="max-w-1/3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-10">
-            <a href="#">
+            <a href={`/mycourse/${course._id}`}>
                 <img class="rounded-t-lg" src={course.photo} alt="Course Image" />
             </a>
             <div class="p-5">
-                <a href="#">
+                <a href={`/mycourse/${course._id}`}>
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{course.title}</h5>
                 </a>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Start, switch, or advance your career with more than 6,900 courses, Professional Certificates, and degrees from world-class universities and companies.</p>

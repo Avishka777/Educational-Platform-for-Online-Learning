@@ -36,16 +36,18 @@ export default function AllCourse() {
         <button onClick={() => handleCategoryChange("Specialized Skills")} className="hover:text-gray-700 text-lg font-semibold">Specialized Skills</button>
       </nav>
 
-      <h1 className='text-2xl sm:text-4xl font-serif mt-8 text-sky-600'>Let's Start Learning, {currentUser.userName}</h1>
+      <h1 className='text-2xl sm:text-4xl font-serif mt-8 text-sky-600'>Let's Start Learning, {currentUser.userName.toUpperCase()}</h1>
 
       <section id={selectedCategory.replace(/\s+/g, '')}>
         <div className='rounded-lg mt-8'>
           <h1 className='text-2xl sm:text-4xl font-serif mb-5'>{selectedCategory}</h1>
           <hr className='my-1 sm:my-2 border-2 border-gray-500 font-bold' />
         </div>
-        {courses.length > 0 ? courses.map((course) => (
-          <CourseCard key={course._id} course={course}/>
-        )) : <p>No courses found in this category.</p>}
+        <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
+          {courses.length > 0 ? courses.map((course) => (
+            <CourseCard key={course._id} course={course}/>
+          )) : <p className='text-orange-500 text-2xl'>No courses found in this category.</p>}
+        </div>
       </section>
     </div>
   );
