@@ -15,6 +15,9 @@ const PaymentSchema= mongoose.Schema(
         },
         payemail:{
             type:String
+        },
+        courseName:{
+            type:String
         }
     },
     {

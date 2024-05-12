@@ -3,41 +3,45 @@ import { Modal, Table, Button } from 'flowbite-react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import axios from 'axios';
 
 export default function DashPayment() {
+
+  const [payments, setPayments] = useState([]);
+
+  useEffect(() => {
+
+    const fetchPayments = async () => {
+      const res = await axios.get('/paymentservice/api/stripe/');
+      setPayments(res.data);
+    }
+    fetchPayments()
+  },[])
+
+  console.log(payments);
+
   return (
 
     <div className='w-full p-5 scrollbar'>
       
           <Table hoverable className='shadow-md'>
             <Table.Head>
-              <Table.HeadCell>Payment Date and Time</Table.HeadCell>
-              <Table.HeadCell>Payment ID</Table.HeadCell>
-              <Table.HeadCell>User ID</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
-              <Table.HeadCell>
-                <span>Edit</span>
-              </Table.HeadCell>
+              <Table.HeadCell>Email</Table.HeadCell>
+              <Table.HeadCell>Amount</Table.HeadCell>
+              <Table.HeadCell>Course Name</Table.HeadCell>
             </Table.Head>
             
               <Table.Body className='divide-y'>
-                <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
-                  <Table.Cell></Table.Cell>
-                  <Table.Cell></Table.Cell>
-                  <Table.Cell></Table.Cell>
-                  <Table.Cell>
-                    <span
-                      className='font-medium text-red-500 hover:underline cursor-pointer'
-                    >
-                      Delete
-                    </span>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link className='text-teal-500 hover:underline'>
-                      <span>Edit</span>
-                    </Link>
-                  </Table.Cell>
+                {
+                  payments.map((payment, index) => (
+                    <Table.Row key={index} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
+                  <Table.Cell>{payment.payemail}</Table.Cell>
+                  <Table.Cell>${payment.amount}.00</Table.Cell>
+                  <Table.Cell>{payment.courseName}</Table.Cell>
+                 
                 </Table.Row>
+                  ))
+                }
               </Table.Body>
           </Table>
           

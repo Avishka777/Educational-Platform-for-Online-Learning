@@ -12,6 +12,7 @@ const createPayment =asyncHandler (async(req,res)=>{
         const uid = req.params.uid;
         const cid = req.params.cid;
         const amount = req.params.amount;
+        const courseName = req.params.cname;
         console.log(uid);
         console.log(cid);
         console.log(amount);
@@ -40,11 +41,12 @@ const createPayment =asyncHandler (async(req,res)=>{
             userid:uid,
             courseid:cid,
             amount:amount,
+            courseName:courseName,
             payemail:req.body.email
         })
 
         await client.messages.create({
-            body: `You are ${amount} successfully recived. And you are enrolled courese. GOOD LUCK 👨‍🎓  Knowlage.net` ,
+            body: `You are $ ${amount} successfully recived. And you are enrolled ${courseName}. GOOD LUCK 👨‍🎓  Knowlage.net` ,
             from: '+12076721160',
             to: '+94717472613'
         })
