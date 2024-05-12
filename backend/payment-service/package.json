@@ -17,6 +17,7 @@
     "express": "^4.19.2",
     "express-async-handler": "^1.2.0",
     "mongoose": "^8.3.4",
+    "nodemon": "^3.1.0",
     "stripe": "^15.6.0",
     "twilio": "^5.0.4"
   }

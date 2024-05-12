@@ -43,7 +43,7 @@ export default function Course() {
             try {
                 if (!stripeToken) return;
 
-                const response = await axios.post(`/paymentservice/api/stripe/${id}/${currentUser._id}/${courses.price}`, {
+                const response = await axios.post(`/paymentservice/api/stripe/${id}/${currentUser._id}/${courses.price}/${courses.title}`, {
                     tokenId: stripeToken.id,
                     amount: courses.price,
                     email: stripeToken.email,
@@ -58,7 +58,7 @@ export default function Course() {
         };
 
         makePayment();
-    }, [stripeToken, id, currentUser, courses.price,]);
+    }, [stripeToken, id, currentUser, courses.price, courses.title]);
 
   return (
     <div className='sm:px-36 py-10 px-10'>

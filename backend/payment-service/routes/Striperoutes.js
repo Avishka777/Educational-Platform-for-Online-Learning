@@ -3,7 +3,7 @@ const { createPayment, getAllPayment, getPaymentByUserId } = require("../control
 const router = express.Router();
 
 
-router.post("/:cid/:uid/:amount",createPayment);
+router.post("/:cid/:uid/:amount/:cname",createPayment);
 // router.post("/payment",createPayment);
 
 router.get("/",getAllPayment);
