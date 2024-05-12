@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Payment = require("../module/PaymentModule");
+const sendEmail = require("../utils/sendEmail");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const accountSid = 'ACc187b49eb4321fce0f4a2c305e24ad27';
@@ -46,12 +47,32 @@ const createPayment =asyncHandler (async(req,res)=>{
         })
 
         await client.messages.create({
-            body: `You are $ ${amount} successfully recived. And you are enrolled ${courseName}. GOOD LUCK 👨‍🎓  Knowlage.net` ,
+            body: `Your $ ${amount} payment successfully recived. And you are enrolled ${courseName}. GOOD LUCK 👨‍🎓  Knowlage.net` ,
             from: '+12076721160',
             to: '+94717472613'
         })
         .then(message => console.log(message.sid))
         .catch(err => console.log(err));
+
+
+
+        //email
+        const message = `
+            <h1>Knowlage.net<h1>
+            <h2>Payment Conformation!</h2>
+            <p>Your $ ${amount} payment successfully recived.</p>
+            <p>And you are enrolled ${courseName}. GOOD LUCK 👨‍🎓  </p>
+            <br/>
+            <p>Knowlage.net</p>
+
+            
+        `
+
+        const subject = "Knowlage.net payment recipt"
+        const send_to = req.body.email
+        const sent_from = process.env.EMAIL_USER
+
+        await sendEmail(subject, message, send_to, sent_from, )
 
         res.status(201).json(payment);
         
