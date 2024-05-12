@@ -44,7 +44,7 @@ const createPayment =asyncHandler (async(req,res)=>{
         })
 
         await client.messages.create({
-            body: 'Hi KOnda binush',
+            body: `You are ${amount} successfully recived. And you are enrolled courese. GOOD LUCK 👨‍🎓  Knowlage.net` ,
             from: '+12076721160',
             to: '+94717472613'
         })
