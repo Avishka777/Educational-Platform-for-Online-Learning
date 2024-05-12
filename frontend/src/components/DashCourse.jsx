@@ -89,7 +89,9 @@ export default function DashCourses() {
             {userCourses.map((course,index) => (
               <Table.Body key={index} className='divide-y'>
                 <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
-                  <Table.Cell><img src={course.photo} width={'100px'} alt="" /></Table.Cell>
+                  <Link to={`/mycourse/${course._id}`}>                 
+                    <Table.Cell><img src={course.photo} width={'100px'} alt="" /></Table.Cell>
+                  </Link>
                   <Table.Cell>{course.title}</Table.Cell>
                   <Table.Cell>{course.category}</Table.Cell>
                   <Table.Cell>$ {course.price}.00</Table.Cell>

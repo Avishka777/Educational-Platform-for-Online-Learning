@@ -18,7 +18,7 @@ export default function DashComp() {
     // Function To Fetch Users Data
     const fetchUsers = async () => {
       try {
-        const res = await fetch('/api/user/getusers?limit=5');
+        const res = await fetch('/authservice/api/user/getusers?limit=5');
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -39,12 +39,12 @@ export default function DashComp() {
   // Function To Fetch Courses Data
   const fetchCourses = async () => {
     try {
-      const res = await fetch('/api/post/getposts?limit=8');
+      const res = await fetch('/courseservice/api/post/getposts?limit=4');
       const data = await res.json();
       if (res.ok) {
-        setCourses(data.courses);
-        setTotalCourses(data.totalCourses);
-        setLastMonthCourses(data.lastMonthCourses);
+        setCourses(data.posts);
+        setTotalCourses(data.totalPosts);
+        setLastMonthCourses(data.lastMonthPosts);
       }
     } catch (error) {
       console.log(error.message);
@@ -52,6 +52,8 @@ export default function DashComp() {
   };
 
   console.log(totalCourses);
+  console.log(courses);
+  console.log(lastMonthCourses);
 
   return (
     <div className='p-5 w-full'>
@@ -136,7 +138,7 @@ export default function DashComp() {
                         className='w-10 h-10 rounded-full bg-gray-500'
                       />
                     </Table.Cell>
-                    <Table.Cell className='w-13 text-xs' >{user.username}</Table.Cell>
+                    <Table.Cell className='w-13 text-xs' >{user.userName}</Table.Cell>
                   </Table.Row>
                 </Table.Body>
               ))}
@@ -153,16 +155,20 @@ export default function DashComp() {
           </div>
           <Table hoverable>
             <Table.Head>
+              <Table.HeadCell>Course Image</Table.HeadCell>
               <Table.HeadCell>Course Name</Table.HeadCell>
-              <Table.HeadCell>Course Code</Table.HeadCell>
             </Table.Head>
             {/* Displaying List Of Recent Courses */}
             {courses &&
               courses.map((course) => (
                 <Table.Body key={course._id} className='divide-y'>
                   <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
-                    <Table.Cell className='w-15 text-xs'>{course.courseName}</Table.Cell>
-                    <Table.Cell className='w-15 text-xs'>{course.courseCode}</Table.Cell>
+                  <Link to={`/mycourse/${course._id}`}> 
+                    <Table.Cell className='w-15 text-xs'>
+                    <img src={course.photo} width={'100px'} alt={course.title} />
+                    </Table.Cell>
+                  </Link>
+                    <Table.Cell className='w-15 text-xs'>{course.title}</Table.Cell>
                   </Table.Row>
                 </Table.Body>
               ))}

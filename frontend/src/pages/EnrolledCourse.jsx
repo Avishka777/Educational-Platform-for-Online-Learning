@@ -33,7 +33,7 @@ export default function EnrolledCourse() {
   const calculateProgress = () => {
     const total = completion.length;
     const completed = completion.filter(Boolean).length;
-    return Math.round((completed / total) * 100); // Round to nearest whole number
+    return Math.round((completed / total) * 100);
   };
 
   if (!course) {

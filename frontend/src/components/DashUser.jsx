@@ -15,7 +15,7 @@ export default function DashUser() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`/api/user/getusers`);
+        const res = await fetch(`/authservice/api/user/getusers`);
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -36,7 +36,7 @@ export default function DashUser() {
   const handleShowMore = async () => {
     const startIndex = users.length;
     try {
-      const res = await fetch(`/api/user/getusers?startIndex=${startIndex}`);
+      const res = await fetch(`/authservice/api/user/getusers?startIndex=${startIndex}`);
       const data = await res.json();
       if (res.ok) {
         setUsers((prev) => [...prev, ...data.users]);
@@ -52,7 +52,7 @@ export default function DashUser() {
   // Delete User When "Yes, I'm Sure" Button Is Clicked In Modal
   const handleDeleteUser = async () => {
     try {
-        const res = await fetch(`/api/user/delete/${userIdToDelete}`, {
+        const res = await fetch(`/authservice/api/user/delete/${userIdToDelete}`, {
             method: 'DELETE',
         });
         const data = await res.json();
@@ -81,7 +81,7 @@ export default function DashUser() {
               <Table.HeadCell>Email</Table.HeadCell>
               <Table.HeadCell>Admin</Table.HeadCell>
               <Table.HeadCell>Faculty</Table.HeadCell>
-              <Table.HeadCell>Student</Table.HeadCell>
+              <Table.HeadCell>Learner</Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
             </Table.Head>
             {/* Table Body */}
@@ -94,14 +94,14 @@ export default function DashUser() {
                   <Table.Cell>
                     <img
                       src={user.profilePicture}
-                      alt={user.username}
+                      alt={user.userName}
                       className='w-10 h-10 object-cover bg-gray-500 rounded-full'
                     />
                   </Table.Cell>
-                  <Table.Cell>{user.username}</Table.Cell>
+                  <Table.Cell>{user.userName}</Table.Cell>
                   <Table.Cell>{user.email}</Table.Cell>
                   <Table.Cell>
-                    {(user.role=='admin') ? (
+                    {(user.isAdmin) ? (
                       <FaCheck className='text-green-500' />
                     ) : (
                       <FaTimes className='text-red-500' />
