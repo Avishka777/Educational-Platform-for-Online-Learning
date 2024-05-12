@@ -13,6 +13,10 @@ const AnnousementSchema= mongoose.Schema(
         category: {
             type: String
         },
+        isBrostcast:{
+            type:Boolean,
+            default:false
+        }
     },
     {
         timestamps: true

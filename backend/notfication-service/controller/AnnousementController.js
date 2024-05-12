@@ -50,10 +50,35 @@ const deleteNotficaton = asyncHandler(async(req,res)=>{
 })
 
 
+//brodcast
+const createBroatcast = asyncHandler(async(req,res)=>{
+    try{
+        console.log("Add notfication");
+        const {title, annousement,category} = req.body
+
+        const notfications =await Notfication.create({
+            title:title,
+            annousement:annousement,
+            category:category,
+            isBrostcast:true
+        })
+
+
+        res.status(201).json(notfications)
+        console.log(notfications);
+
+    }catch (error) {
+        console.error("Error occour notfication:", error);
+        res.status(500).json({ success: false, error: "Internal Server Error" });
+    }
+})
+
+
 
 module.exports = {
     createAnnousement,
     getallNotfication,
-    deleteNotficaton
+    deleteNotficaton,
+    createBroatcast
 
 }
