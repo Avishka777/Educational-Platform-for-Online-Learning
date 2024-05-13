@@ -1,8 +1,8 @@
-FROM node:18.19.1
+FROM node:20.12.2
 
 RUN npm install -g nodemon
 
-WORKDIR /app/auth-service
+WORKDIR /app
 
 COPY . .
 
