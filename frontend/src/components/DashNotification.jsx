@@ -15,7 +15,7 @@ export default function DashNotification() {
     const fetchNotifications = async () => {
       try {
         const res = await fetch(
-          `/api/notification/getnotifications?userId=${currentUser._id}`
+          `/notificationservice/api/notification/`
         );
         const data = await res.json();
         if (res.ok) {
@@ -31,7 +31,9 @@ export default function DashNotification() {
     if (currentUser.isAdmin) {
       fetchNotifications();
     }
-  }, [currentUser._id, currentUser.isAdmin]);
+  }, [currentUser.isAdmin]);
+
+  console.log(userNotifications);
 
   const handleShowMore = async () => {
     const startIndex = userNotifications.length;
@@ -55,7 +57,7 @@ export default function DashNotification() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/notification/deletenotification/${notificationIdToDelete}`,
+        `/notificationservice/api/notification/${notificationIdToDelete}`,
         {
           method: "DELETE",
         }
@@ -85,9 +87,6 @@ export default function DashNotification() {
               <Table.HeadCell>Notification Title</Table.HeadCell>
               <Table.HeadCell>Notification Body</Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
-              <Table.HeadCell>
-                <span>Edit</span>
-              </Table.HeadCell>
             </Table.Head>
             {userNotifications
               .slice(0)
@@ -98,8 +97,8 @@ export default function DashNotification() {
                     <Table.Cell>
                       {new Date(notification.createdAt).toLocaleString()}
                     </Table.Cell>
-                    <Table.Cell>{notification.notificationTitle}</Table.Cell>
-                    <Table.Cell>{notification.notificationBody}</Table.Cell>
+                    <Table.Cell>{notification.title}</Table.Cell>
+                    <Table.Cell>{notification.annousement}</Table.Cell>
                     <Table.Cell>
                       <span
                         onClick={() => {
@@ -110,14 +109,6 @@ export default function DashNotification() {
                       >
                         Delete
                       </span>
-                    </Table.Cell>
-                    <Table.Cell>
-                      <Link
-                        className="text-teal-500 hover:underline"
-                        to={`/update-notification/${notification._id}`}
-                      >
-                        <span>Edit</span>
-                      </Link>
                     </Table.Cell>
                   </Table.Row>
                 </Table.Body>
