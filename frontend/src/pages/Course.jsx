@@ -111,11 +111,11 @@ export default function Course() {
               </StripeCheckout>
               <hr className="my-3 sm:my-3 border-1 border-gray-500 font-bold" />
               <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                <FaStar color="yellow" />
-                <FaStar color="yellow" />
-                <FaStar color="yellow" />
-                <FaStar color="yellow" />
-                <FaStar color="yellow" />
+                <FaStar color="#D31BAA" />
+                <FaStar color="#D31BAA" />
+                <FaStar color="#D31BAA" />
+                <FaStar color="#D31BAA" />
+                <FaStar color="#D31BAA" />
                 <span class="text-gray-400 text-lg">(134K reviews)</span>
               </div>
               <hr className="my-3 sm:my-3 border-1 border-gray-500 font-bold" />

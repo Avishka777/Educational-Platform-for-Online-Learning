@@ -14,11 +14,11 @@ export default function StudentFeedback() {
           </p>
           <div class="flex items-center mt-2.5 mb-5">
             <div class="flex items-center space-x-1 rtl:space-x-reverse">
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
-              <FaStarHalfStroke color="yellow" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
             </div>
             <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
               4.5
@@ -36,11 +36,11 @@ export default function StudentFeedback() {
           </p>
           <div class="flex items-center mt-2.5 mb-5">
             <div class="flex items-center space-x-1 rtl:space-x-reverse">
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
             </div>
             <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
               5.0
@@ -58,11 +58,11 @@ export default function StudentFeedback() {
           </p>
           <div class="flex items-center mt-2.5 mb-5">
             <div class="flex items-center space-x-1 rtl:space-x-reverse">
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
             </div>
             <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
               5.0
@@ -80,10 +80,10 @@ export default function StudentFeedback() {
           </p>
           <div class="flex items-center mt-2.5 mb-5">
             <div class="flex items-center space-x-1 rtl:space-x-reverse">
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
-              <FaStar color="yellow" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
+              <FaStar color="#D31BAA" />
               <FaStar />
             </div>
             <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">

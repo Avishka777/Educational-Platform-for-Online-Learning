@@ -104,7 +104,7 @@ export default function Header() {
           arrowIcon={false}
           inline
           label={<MdNotifications size={28} className="my-auto mr-4" />}
-          className="min-w-60 bg-slate-200"
+          className="w-1/4 bg-slate-200"
         >
           <Dropdown.Header>
             <div className="flex justify-between">
@@ -117,10 +117,10 @@ export default function Header() {
 
           {notifications.map((notification, index) => (
             <>
-              <Dropdown.Item className="font-semibold">
+              <Dropdown.Item className="font-bold text-left">
                 {notification.title}
               </Dropdown.Item>
-              <Dropdown.Item className="text-left">
+              <Dropdown.Item className="text-left text-xs">
                 {notification.annousement}
               </Dropdown.Item>
               <Dropdown.Divider />
