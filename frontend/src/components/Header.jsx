@@ -9,7 +9,7 @@ import { signoutSuccess } from "../redux/user/userSlice";
 import { useEffect, useState } from "react";
 import { MdNotifications } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
-import axios from 'axios'
+import axios from "axios";
 
 export default function Header() {
   const path = useLocation().pathname;
@@ -53,16 +53,16 @@ export default function Header() {
     navigate(`/search?${searchQuery}`);
   };
 
-   useEffect(() => {
-      const fetchNotifications = async () => {
-        const res = await axios.get(`/notificationservice/api/notification/`)
-        setNotifications(res.data)
-      }
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      const res = await axios.get(`/notificationservice/api/notification/`);
+      setNotifications(res.data);
+    };
 
-    fetchNotifications()
-   },[])
+    fetchNotifications();
+  }, []);
 
-   console.log(notifications);
+  console.log(notifications);
 
   return (
     <Navbar className="border-b-2">
@@ -71,7 +71,7 @@ export default function Header() {
         className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white flex"
       >
         <img src={logo} className="mr-3 h-16 sm:h-16" alt="Company Logo" />
-        <span className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white font-serif text-sky-700">
+        <span className="self-center whitespace-nowrap text-3xl dark:text-teal-600 text-teal-700">
           Knowledge.Net
         </span>
       </Link>
@@ -103,28 +103,29 @@ export default function Header() {
         <Dropdown
           arrowIcon={false}
           inline
-          label={<MdNotifications size={28} className="my-auto mx-4" />}
-          className="w-96" // Adjust the width here
+          label={<MdNotifications size={28} className="my-auto mr-4" />}
+          className="min-w-60 bg-slate-200"
         >
           <Dropdown.Header>
-            <div className="flex">
-              <span className="block text-sm">Read All</span>
-              <IoMdDoneAll size={14} className="my-auto mx-4" />
+            <div className="flex justify-between">
+              <span className="block text-lg font-bold text-sky-600">
+                Read All
+              </span>
+              <IoMdDoneAll size={16} color="#1f96c1" className="my-auto mx-4" />
             </div>
           </Dropdown.Header>
 
-          <Dropdown.Divider />
-
-          {
-            notifications.map((notification, index) => (
-              <>
-              <Dropdown.Item className="font-semibold">{notification.title}</Dropdown.Item>
-              <Dropdown.Item>
-               {notification.annousement}
+          {notifications.map((notification, index) => (
+            <>
+              <Dropdown.Item className="font-semibold">
+                {notification.title}
               </Dropdown.Item>
-              </>
-            ))
-          }
+              <Dropdown.Item className="text-left">
+                {notification.annousement}
+              </Dropdown.Item>
+              <Dropdown.Divider />
+            </>
+          ))}
         </Dropdown>
 
         {currentUser ? (
@@ -165,7 +166,7 @@ export default function Header() {
         <Navbar.Link
           active={path === "/"}
           as={"div"}
-          style={{ color: path === "/" ? "#8043d6" : "#1f96c1" }}
+          style={{ color: path === "/" ? "#1f96c1" : "#6F6F6F" }}
         >
           <Link to="/" className="text-lg">
             Home
@@ -174,7 +175,7 @@ export default function Header() {
         <Navbar.Link
           active={path === "/allcourses"}
           as={"div"}
-          style={{ color: path === "/allcourses" ? "#8043d6" : "#1f96c1" }}
+          style={{ color: path === "/allcourses" ? "#1f96c1" : "#6F6F6F" }}
         >
           <Link to="/allcourses" className="text-lg">
             All Courses
@@ -183,7 +184,7 @@ export default function Header() {
         <Navbar.Link
           active={path === "/mycourses"}
           as={"div"}
-          style={{ color: path === "/mycourses" ? "#8043d6" : "#1f96c1" }}
+          style={{ color: path === "/mycourses" ? "#1f96c1" : "#6F6F6F" }}
         >
           <Link to="/mycourses" className="text-lg">
             My Courses
@@ -192,7 +193,7 @@ export default function Header() {
         <Navbar.Link
           active={path === "/about"}
           as={"div"}
-          style={{ color: path === "/about" ? "#8043d6" : "#1f96c1" }}
+          style={{ color: path === "/about" ? "#1f96c1" : "#6F6F6F" }}
         >
           <Link to="/about" className="text-lg">
             About Us

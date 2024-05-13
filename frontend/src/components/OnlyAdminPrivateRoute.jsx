@@ -1,16 +1,15 @@
-import { useSelector } from 'react-redux';
-import { Outlet, Navigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { Outlet, Navigate } from "react-router-dom";
 
 export default function OnlyAdminPrivateRoute() {
-  
   // Retrieve The Current User From The Redux Store
   const { currentUser } = useSelector((state) => state.user);
-  
+
   // Render The Child Routes If The Current User Exists And Is An Admin, Otherwise Redirect To Sign-In Page
   return currentUser && currentUser.isAdmin ? (
     <Outlet /> // Render The Clild Routes
   ) : (
-    <Navigate to='/sign-in' /> // Redirect To The Sign-In Page
+    <Navigate to="/sign-in" /> // Redirect To The Sign-In Page
   );
 }
 // This Component Represents a Private Route Accessible Only to Users With Admin Privileges.
