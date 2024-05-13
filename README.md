@@ -25,10 +25,10 @@ use this link to install and setup the docker desktop
 - Clone this project 
 - Start the project with using this command. "docker compose up" 
 - Open http://localhost:5000 to view it in the browser.
-- Auth service running on http://localhost:5001
-- CourseServie running on http://localhost:5002
-- Paymentservice running on http://localhost:5003
-- Notificationservice running on http://localhost:5004
+- Auth service running on http://localhost:5000/authservice
+- CourseServie running on http://localhost:5000/courseservice
+- Paymentservice running on http://localhost:5000/paymentservice
+- Notificationservice running on http://localhost:5000/notificationservice
 
 **Set up the Frontend**
 
