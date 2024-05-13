@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
+import React, { useEffect, useState } from "react";
+import { Alert, Button, FileInput, FooterDivider, Select, TextInput } from "flowbite-react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from 'axios';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; // Ensure CSS for ReactQuill is imported
+import axios from "axios";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Ensure CSS for ReactQuill is imported
 
 export default function UpdateCourse() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    title: '',
-    price: '',
-    category: '',
-    content: '',
+    title: "",
+    price: "",
+    category: "",
+    content: "",
   });
   const [publishError, setPublishError] = useState(null);
 
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await axios.get(`/courseservice/api/post/getposts?postId=${id}`);
+        const response = await axios.get(
+          `/courseservice/api/post/getposts?postId=${id}`
+        );
         if (response.data.posts && response.data.posts[0]) {
           setFormData(response.data.posts[0]);
         } else {
-          throw new Error('No data found');
+          throw new Error("No data found");
         }
       } catch (error) {
         console.error("Failed to fetch course details:", error);
@@ -36,9 +38,9 @@ export default function UpdateCourse() {
   }, [id]);
 
   const handleInputChange = (field, value) => {
-    setFormData(prevFormData => ({
+    setFormData((prevFormData) => ({
       ...prevFormData,
-      [field]: value
+      [field]: value,
     }));
   };
 
@@ -46,7 +48,7 @@ export default function UpdateCourse() {
     e.preventDefault();
     try {
       await axios.put(`/courseservice/api/post/updatepost/${id}`, formData);
-      navigate('/dashboard?tab=courses'); // Adjust according to your actual route
+      navigate("/dashboard?tab=courses"); // Adjust according to your actual route
     } catch (error) {
       console.error("Update failed:", error);
       setPublishError("Something went wrong with the update.");
@@ -56,24 +58,25 @@ export default function UpdateCourse() {
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">Update Course</h1>
+      <FooterDivider/>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <TextInput
           type="text"
           placeholder="Title"
           required
           value={formData.title}
-          onChange={(e) => handleInputChange('title', e.target.value)}
+          onChange={(e) => handleInputChange("title", e.target.value)}
         />
         <TextInput
           type="text"
           placeholder="Price"
           required
           value={formData.price}
-          onChange={(e) => handleInputChange('price', e.target.value)}
+          onChange={(e) => handleInputChange("price", e.target.value)}
         />
         <Select
           value={formData.category}
-          onChange={(e) => handleInputChange('category', e.target.value)}
+          onChange={(e) => handleInputChange("category", e.target.value)}
         >
           <option value="uncategorized">Select a category</option>
           <option value="Technical Courses">Technical Courses</option>
@@ -171,9 +174,11 @@ export default function UpdateCourse() {
           placeholder="Write Content..."
           className="h-72 mb-12"
           value={formData.content}
-          onChange={(content) => handleInputChange('content', content)}
+          onChange={(content) => handleInputChange("content", content)}
         />
-        <Button type="submit" gradientDuoTone="purpleToPink">Update Course</Button>
+        <Button type="submit" gradientDuoTone="purpleToPink">
+          Update Course
+        </Button>
         {publishError && <Alert color="failure">{publishError}</Alert>}
       </form>
     </div>

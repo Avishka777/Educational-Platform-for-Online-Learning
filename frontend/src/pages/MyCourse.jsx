@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import PaymentCourseCard from '../components/PaymentCourseCard';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import PaymentCourseCard from "../components/PaymentCourseCard";
+import { useSelector } from "react-redux";
 
 export default function MyCourse() {
   const { currentUser } = useSelector((state) => state.user);
@@ -13,9 +13,13 @@ export default function MyCourse() {
   useEffect(() => {
     const fetchPayments = async () => {
       try {
-        const response = await axios.get(`/paymentservice/api/stripe/${currentUser._id}`);
+        const response = await axios.get(
+          `/paymentservice/api/stripe/${currentUser._id}`
+        );
         setPayments(response.data);
-        const extractedCourseIds = response.data.map(payment => payment.courseid);
+        const extractedCourseIds = response.data.map(
+          (payment) => payment.courseid
+        );
         setCourseIds(extractedCourseIds);
       } catch (error) {
         console.error("Failed to fetch payments:", error);
@@ -32,11 +36,13 @@ export default function MyCourse() {
     if (courseIds.length > 0) {
       const fetchCourses = async () => {
         try {
-          const courseFetchPromises = courseIds.map(courseId =>
+          const courseFetchPromises = courseIds.map((courseId) =>
             axios.get(`/courseservice/api/post/getposts?postId=${courseId}`)
           );
           const coursesResponses = await Promise.all(courseFetchPromises);
-          const fetchedCourses = coursesResponses.map(response => response.data.posts[0]);
+          const fetchedCourses = coursesResponses.map(
+            (response) => response.data.posts[0]
+          );
           setCourses(fetchedCourses);
         } catch (error) {
           console.error("Failed to fetch courses:", error);
@@ -48,17 +54,20 @@ export default function MyCourse() {
   }, [courseIds]);
 
   return (
-    <div className='sm:px-36 py-10 px-10'>
-      <h1 className='text-2xl sm:text-4xl font-serif mt-8 text-sky-600'>My Courses</h1>
-      <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
+    <div className="sm:px-36 py-10 px-10 min-h-screen">
+      <h1 className="text-2xl sm:text-4xl font-serif mt-8 ">My Courses</h1>
+      <hr className="my-1 sm:my-2 border-2 border-gray-500 font-bold" />
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {isLoading ? (
           <p>Loading courses...</p> // Display while loading
         ) : courses.length > 0 ? (
-          courses.map(course => (
-            <PaymentCourseCard key={course._id} course={course}/>
+          courses.map((course) => (
+            <PaymentCourseCard key={course._id} course={course} />
           ))
         ) : (
-          <p className='text-2xl font-semibold text-orange-300'>You did not buy any courses.</p> // Display if no courses are found
+          <p className="text-2xl font-semibold text-sky-600 mt-10">
+            Sorry, You Did Not Buy Any Course Yet.
+          </p> // Display if no courses are found
         )}
       </div>
     </div>

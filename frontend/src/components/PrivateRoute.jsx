@@ -1,13 +1,14 @@
-import { useSelector } from 'react-redux';
-import { Outlet, Navigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { Outlet, Navigate } from "react-router-dom";
 
 export default function PrivateRoute() {
+  
   // Retrieve The Current User From The Redux Store
   const { currentUser } = useSelector((state) => state.user);
 
   // Check If There Is A Current User, If Yes, Render The Child Components,
   // Otherwise, Navigate The User To The Sign-In Page
-  return currentUser ? <Outlet /> : <Navigate to='/sign-in' />;
+  return currentUser ? <Outlet /> : <Navigate to="/sign-in" />;
 }
 // This Component Serves As A Private Route Guard Throughout The Application.
 // It Retrieves The Current User From The Redux Store Using The UseSelector Hook.

@@ -1,7 +1,4 @@
 import React from 'react';
-import Slide1 from '../assets/slide/Slide1.png';
-import Slide2 from '../assets/slide/Slide2.png';
-import Slide3 from '../assets/slide/Slide3.png';
 import { Link } from 'react-router-dom';
 
 export default function PaymentCourseCard({course}) {
